@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PackageTool</class>
+ <widget class="QDialog" name="PackageTool">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>676</width>
+    <height>210</height>
+   </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="0" column="0">
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0" colspan="2">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="label_Type">
+         <property name="text">
+          <string>Device Type:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBox"/>
+       </item>
+      </layout>
+     </item>
+     <item row="0" column="2" colspan="3">
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QLabel" name="label_SoftVer">
+         <property name="text">
+          <string>Sofrware version</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit_SoftVer"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_DatabaseVer">
+         <property name="text">
+          <string>Database Version</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit_DatabaseVer">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_MPUFile">
+       <property name="text">
+        <string>Mpu System File:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1" colspan="2">
+      <widget class="QLineEdit" name="lineEdit_MPUFile"/>
+     </item>
+     <item row="1" column="3">
+      <widget class="QPushButton" name="pushButton_MPU">
+       <property name="text">
+        <string>Bwowse</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_HMIFile">
+       <property name="text">
+        <string>HMI File:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1" colspan="2">
+      <widget class="QLineEdit" name="lineEdit_HMIFIle"/>
+     </item>
+     <item row="2" column="3">
+      <widget class="QPushButton" name="pushButton_HMI">
+       <property name="text">
+        <string>Bwowse</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_LogicFile">
+       <property name="text">
+        <string>Logic Files:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1" colspan="2">
+      <widget class="QLineEdit" name="lineEdit_LogicFile"/>
+     </item>
+     <item row="3" column="3">
+      <widget class="QPushButton" name="pushButton_Logic">
+       <property name="text">
+        <string>Bwowse</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="4">
+      <widget class="QPushButton" name="pushButton_LogicDetail">
+       <property name="text">
+        <string>Detail</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="label_IECFiles">
+       <property name="text">
+        <string>IEC61850 Files:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1" colspan="2">
+      <widget class="QLineEdit" name="lineEdit_IECFiles"/>
+     </item>
+     <item row="4" column="3">
+      <widget class="QPushButton" name="pushButton_IEC">
+       <property name="text">
+        <string>Bwowse</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="4">
+      <widget class="QPushButton" name="pushButton_IECDetail">
+       <property name="text">
+        <string>Detail</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="4">
+      <widget class="QPushButton" name="pushButton_MPUDetail">
+       <property name="text">
+        <string>Detail</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_Zip">
+       <property name="text">
+        <string>ZIP</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_Cancel">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

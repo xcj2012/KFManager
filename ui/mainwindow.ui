@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>849</width>
+    <height>612</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_2"/>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>849</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionNew"/>
+    <addaction name="actionOpen"/>
+    <addaction name="separator"/>
+    <addaction name="actionManage"/>
+    <addaction name="actionLib_Manager"/>
+    <addaction name="separator"/>
+    <addaction name="actionPackage_Tool"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionCut"/>
+    <addaction name="actionCopy"/>
+    <addaction name="actionPaste"/>
+    <addaction name="actionDelete"/>
+    <addaction name="separator"/>
+    <addaction name="actionProject_Properties"/>
+    <addaction name="actionOpen_Object"/>
+    <addaction name="separator"/>
+    <addaction name="actionImport_Device"/>
+    <addaction name="actionExport_Device"/>
+    <addaction name="actionUpdate_Prameter"/>
+   </widget>
+   <widget class="QMenu" name="menuInset">
+    <property name="title">
+     <string>Insert</string>
+    </property>
+    <addaction name="actionForder"/>
+    <addaction name="actionDevice"/>
+   </widget>
+   <widget class="QMenu" name="menuDevice">
+    <property name="title">
+     <string>Device</string>
+    </property>
+    <addaction name="actionManaget_Device"/>
+    <addaction name="actionManager_Device_Debug"/>
+    <addaction name="actionInitalize"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <addaction name="actionDevice_catalog"/>
+    <addaction name="actionFilter"/>
+    <addaction name="actionUpdate"/>
+   </widget>
+   <widget class="QMenu" name="menuOption">
+    <property name="title">
+     <string>Option</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuWindows">
+    <property name="title">
+     <string>Windows</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuInset"/>
+   <addaction name="menuDevice"/>
+   <addaction name="menuView"/>
+   <addaction name="menuOption"/>
+   <addaction name="menuWindows"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionNew">
+   <property name="text">
+    <string>New</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionManage">
+   <property name="text">
+    <string>Manage</string>
+   </property>
+  </action>
+  <action name="actionarchiving">
+   <property name="text">
+    <string>Archive</string>
+   </property>
+  </action>
+  <action name="actionRetrieve">
+   <property name="text">
+    <string>Retrieve</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionCut">
+   <property name="text">
+    <string>Cut</string>
+   </property>
+  </action>
+  <action name="actionCopy">
+   <property name="text">
+    <string>Copy</string>
+   </property>
+  </action>
+  <action name="actionPaste">
+   <property name="text">
+    <string>Paste</string>
+   </property>
+  </action>
+  <action name="actionDelete">
+   <property name="text">
+    <string>Delete</string>
+   </property>
+  </action>
+  <action name="actionSelect">
+   <property name="text">
+    <string>Select All</string>
+   </property>
+  </action>
+  <action name="actionUnselect">
+   <property name="text">
+    <string>Unselect</string>
+   </property>
+  </action>
+  <action name="actionProject_Properties">
+   <property name="text">
+    <string>Object Properties</string>
+   </property>
+  </action>
+  <action name="actionOpen_Object">
+   <property name="text">
+    <string>Open Object</string>
+   </property>
+  </action>
+  <action name="actionImport_Device">
+   <property name="text">
+    <string>Import Device</string>
+   </property>
+  </action>
+  <action name="actionExport_Device">
+   <property name="text">
+    <string>Export Device</string>
+   </property>
+  </action>
+  <action name="actionUpdate_Prameter">
+   <property name="text">
+    <string>Update Prameter</string>
+   </property>
+  </action>
+  <action name="actionForder">
+   <property name="text">
+    <string>Forder</string>
+   </property>
+  </action>
+  <action name="actionDevice">
+   <property name="text">
+    <string>Device</string>
+   </property>
+  </action>
+  <action name="actionManaget_Device">
+   <property name="text">
+    <string>Manager-&gt;Device Online</string>
+   </property>
+  </action>
+  <action name="actionManager_Device_Debug">
+   <property name="text">
+    <string>Manager-&gt;Device Debug</string>
+   </property>
+  </action>
+  <action name="actionInitalize">
+   <property name="text">
+    <string>Initialize Device</string>
+   </property>
+  </action>
+  <action name="actionDevice_catalog">
+   <property name="text">
+    <string>Device catalog</string>
+   </property>
+  </action>
+  <action name="actionFilter">
+   <property name="text">
+    <string>Filter</string>
+   </property>
+  </action>
+  <action name="actionUpdate">
+   <property name="text">
+    <string>Update</string>
+   </property>
+  </action>
+  <action name="actionLib_Manager">
+   <property name="text">
+    <string>Device Library</string>
+   </property>
+  </action>
+  <action name="actionPackage_Tool">
+   <property name="text">
+    <string>Package Tool</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
