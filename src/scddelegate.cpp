@@ -631,6 +631,13 @@ bool ScdDelegate::setitemInfo(Item_struct &item,QString xpath)
     }
     return  false;
 }
+bool ScdDelegate::isExistItem(QString xpath)
+{
+    pugi::xpath_node xnode =m_doc->select_node(xpath.toStdString().data());
+    if(xnode.node().empty())
+        return false;
+    return true;
+}
 
 QString ScdDelegate::getcreatetime()
 {

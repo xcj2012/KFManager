@@ -32,7 +32,7 @@ struct xml_string_writer :public pugi::xml_writer
 #define ZIP_RETURN_XML_ERROR 0x04
 #define ZIP_RETURN_NOT_MATCH 0x05
 #define ZIP_RETURN_CANCEL 0x05
-
+#define ZIP_RETURN_HASH_ERROR 0x06
 namespace Ui {
 class Zip_process;
 }
@@ -45,30 +45,34 @@ public:
     explicit Zip_process(QWidget *parent = nullptr);
     ~Zip_process();
 
-    void init_connect();
-    void setupwidget();
-    void archive_Pro2Pro(QString source,QString dest);
-    void archive_Device2Lib(QString source,QString dest);
-    void archive_Lib2Lib(QString source,QString dest);
-    void archive_Device2Device_PRO(QString source,QString dest);
-    void archive_Device2Device_Lib(QString source,QString dest);
-    void archive_source2dest(QString source,QString dest,int mode=0);
-    void retrieve_source2dest(QString source,QString dest);
-    void retrieve_Lib2Lib(QString source,QString dest);
-    void retrieve_Device2Device_PRO(QString source,QString dest);
-    void retrieve_Device2Device_Lib(QString source,QString dest);
-    void retrieve_Pro2Pro(QString source,QString dest);
+    void    init_connect();
+    void    setupwidget();
+    void    archive_Pro2Pro(QString source,QString dest);
+    void    archive_Device2Lib(QString source,QString dest);
+    void    archive_Lib2Lib(QString source,QString dest);
+    void    archive_Device2Device_PRO(QString source,QString dest);
+    void    archive_Device2Device_Lib(QString source,QString dest);
+    void    archive_source2dest(QString source,QString dest,int mode=0);
+    void    retrieve_source2dest(QString source,QString dest);
+    void    retrieve_Lib2Lib(QString source,QString dest);
+    void    retrieve_Device2Device_PRO(QString source,QString dest);
+    void    retrieve_Device2Device_Lib(QString source,QString dest);
+    void    retrieve_Pro2Pro(QString source,QString dest);
 public:
-    void setsource(QString);
-    void setdest(QString);
-    void setlibrary(QString);
-    void setdevice(QString);
-    void setversion(QString);
-    void setlibpath(QString);
-    void setdatabse(QString);
-    void settype(int);
-    void setmode(int);
-    void setmethod(int);
+    void    setsource(QString);
+    void    setdest(QString);
+    void    setlibrary(QString);
+    void    setdevice(QString);
+    void    setversion(QString);
+    void    setlibpath(QString);
+    void    setdatabse(QString);
+    void    settype(int);
+    void    setmode(int);
+    void    setmethod(int);
+    QString    getlibrary();
+    QString    getversion();
+    QString    getdatabse();
+
 private:
     int type;
     int mode;
@@ -80,23 +84,25 @@ private:
     QString version;
     QString database;
     QString libpath;
-    int  lib_import();
-    int  lib_export();
-    void Device2lib_export();
-    void pro_import();
-    void pro_export();
-    int devcie_export();
-    void devcie_import();
+    QString output_file;
+    int     unzip2map(QString,QMap<QString,QByteArray>&map);
+    int     lib_import();
+    int     lib_export();
+    int     Device2lib_export();
+    int     pro_import();
+    int     pro_export();
+    int     devcie_export();
+    int     devcie_import();
     QString compare_version(QString desc,QString version,QString database);
 signals:
-    void emit_help_message(QString);
-    void emit_process_index(int val);
+    void    emit_help_message(QString);
+    void    emit_process_index(int val);
 private slots:
-    void on_pushbutton_Ok();
-    void on_pushbutton_Cancel();
-    void on_pushbutton_Help();
-    void on_pushbutton_Browse();
-    void on_process_index(int val);
+    void    on_pushbutton_Ok();
+    void    on_pushbutton_Cancel();
+    void    on_pushbutton_Help();
+    void    on_pushbutton_Browse();
+    void    on_process_index(int val);
 private:
     Ui::Zip_process *ui;
 };

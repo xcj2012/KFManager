@@ -164,10 +164,12 @@ void LibManage::on_pushbutton_Archive_clicked()
         return;
     }
     Zip_process *m_dlg= new Zip_process(this);
+
     m_dlg->setsource(path);
     m_dlg->setmode(MODE_LIB);
     m_dlg->setmethod(LIB_MANAGE);
     m_dlg->settype(ZIP_ARCHIVE);
+    m_dlg->setupwidget();
     m_dlg->exec();
     //List_library();
 }
@@ -195,6 +197,7 @@ void LibManage::on_pushbutton_Retrieve_clicked()
     m_dlg->setmode( MODE_LIB);
     m_dlg->setmethod(LIB_MANAGE);
     m_dlg->settype(ZIP_RETRIEVE);
+    m_dlg->setupwidget();
     m_dlg->exec();
     List_library();
 }

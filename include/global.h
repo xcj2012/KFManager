@@ -6,8 +6,8 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QMenu>
-#include "pugixml/src/pugiconfig.hpp"
-#include "pugixml/src/pugixml.hpp"
+#include "pugiconfig.hpp"
+#include "pugixml.hpp"
 #include <QCryptographicHash>
 #include <QtDebug>
 #include <QByteArray>
@@ -46,12 +46,16 @@
 #define  OBJECT_STATION 0x02
 #define  OBJECT_DEVICE 0x03
 
-#define HASH_FILE_NAME  "hash.xml"
-#define DEV_FILE_NAME  "Device.xml"
-#define LIB_FILE_NAME  "Library.xml"
-#define PRO_FILE_NAME  "Project.xml"
-#define LIBRARY_PATH  "Templates"
-
+#define  HASH_FILE_NAME  "hash.xml"
+#define  DEV_FILE_NAME  "Device.xml"
+#define  LIB_FILE_NAME  "Library.xml"
+#define  PRO_FILE_NAME  "Project.xml"
+#define  LIBRARY_PATH  "Templates"
+#define  IEC61850_PATH  "IEC61850"
+#define  PARAMETER_PATH  "Parameter"
+#define  LOGIC_PATH     "Logic"
+#define  DATABASE_PATH  "Database"
+#define  DEVICE_PATH  "Device"
 #define  ROOT_NODE 0x01
 #define  STATION_NODE 0x02
 #define  FOLDER_NODE 0x04
@@ -75,19 +79,21 @@ extern QByteArray  g_get_MD5(QString path);
 extern QByteArray  g_get_MD5(QByteArray data);
 extern QStringList g_getfiles(const QString &dir_path,int mode=LIST_MODE_FILE);
 extern void ErrorMessage(QString);
+extern QMap<QString,QMap<QString,QMap<QString,QString>>>g_lib_map;
 struct DevInfo_struct
 {
     QString name;
     QString ID;
     QString type;
     QString version;
+    QString database;
     DevInfo_struct()
     {
         name.clear();
         ID.clear();
         type.clear();
         version.clear();
-
+        database.clear();
     }
 };
 struct Item_struct
@@ -102,6 +108,7 @@ struct Item_struct
 };
 bool copyFileToPath(QString sourceDir ,QString toDir, bool coverFileIfExist);
 bool copyDirectoryFiles(const QString &fromDir, const QString &toDir, bool coverFileIfExist);
+void init_library_map();
 extern QDir g_dir;
 extern QString g_Template_path;
 

@@ -6,6 +6,7 @@
 #include "objectproperty.h"
 #include "libmanage.h"
 #include "scddelegate.h"
+#include "zip_process.h"
 namespace Ui {
 class ProjectManager;
 }

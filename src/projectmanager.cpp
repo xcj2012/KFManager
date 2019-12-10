@@ -80,8 +80,8 @@ void ProjectManager::add_Dev2Project(QString fromdir,QString lib,QString ver,QSt
 QString ProjectManager::input_object_name(QString name)
 {
     bool ok;
-    QString text = QInputDialog::getText(this, tr("Plesase folder name"),
-                                         tr("Folder name:"), QLineEdit::Normal,
+    QString text = QInputDialog::getText(this, tr("Input object name"),
+                                         tr("Object name:"), QLineEdit::Normal,
                                          name, &ok);
     if(!text.isEmpty())
     {
@@ -744,7 +744,7 @@ void ProjectManager::on_tabview_doubleclicked(const QModelIndex &index)
 
     }else if(itype==SCD_NODE)
     {
-        QString path =file_path+QDir::separator()+file_name+QDir::separator()+"IEC61850"+QDir::separator()+station+QDir::separator()+new_index.data().toString();
+        QString path =file_path+QDir::separator()+file_name+QDir::separator()+IEC61850_PATH+QDir::separator()+station+QDir::separator()+new_index.data().toString();
         openSCDbyProcess(path);
 
     }
@@ -824,36 +824,82 @@ void ProjectManager::on_action_property()
 }
 void ProjectManager::on_action_importdev()
 {
-    int itype =new_index.data(Qt::UserRole+NODE_TYPE).toInt();
+    QModelIndex m_index=new_index;
+    int itype =m_index.data(Qt::UserRole+NODE_TYPE).toInt();
     if(itype==ROOT_NODE)
     {
         QMessageBox::warning(this,tr("warnning"),tr("Please select the folder at first."));
         return;
     }
-
+    if(itype==DEVICE_NODE)
+    {
+        m_index=ui->treeView->currentIndex();
+    }
+    bool b_vaild =false;
+    QString text;
+    while (b_vaild==false)
+    {
+        text= input_object_name(text);
+        QString xpath= m_index.data(Qt::UserRole).toString()+"/item[@name='"+text+"' and @type ='device']";
+        if(!mScdDelegat->isExistItem(xpath))
+            b_vaild=true;
+        else
+        {
+            QMessageBox::warning(this,tr("warning"),tr("The object")+QString(" ")+text+QString(" ")+tr("is already exist"));
+        }
+    }
+    QString xpath= m_index.data(Qt::UserRole).toString();
+    QString station =m_index.data(Qt::UserRole+STATION_NAME).toString();
+    QString sID =mScdDelegat->get_validID(station);
+    QString dest =file_path+QDir::separator()+file_name+QDir::separator()+DEVICE_PATH+QDir::separator()+station+QDir::separator()+sID;
+    Zip_process m_dlg;
+    m_dlg.setmode(MODE_DEV);
+    m_dlg.setmethod(LIB_MANAGE);
+    m_dlg.settype(ZIP_RETRIEVE);
+    m_dlg.setdevice(sID);
+    m_dlg.setdest(dest);
+    m_dlg.setupwidget();
+    if(m_dlg.exec()==QDialog::Accepted)
+    {
+        QString ver =m_dlg.getversion()+"_"+m_dlg.getdatabse();
+        mScdDelegat->AddPath(text,sID,m_dlg.getlibrary(),ver,station,xpath,DEVICE_NODE);
+        mScdDelegat->AddMap(station);
+        QString filename =file_path+QDir::separator()+file_name+".KFpro";
+        save_project();
+        setTreeview_currindex(xpath);
+    }
 }
 void ProjectManager::on_action_exportdev()
 {
-    int itype =new_index.data(Qt::UserRole+NODE_TYPE).toInt();
-    QString name =new_index.data().toString();
-    if(itype!=DEVICE_NODE)
+    if(!new_index.isValid())
     {
-        QMessageBox::warning(this,tr("warnning"),tr("Please select the device at first."));
+        QMessageBox::warning(this,tr("warning"),tr("Select one device item at first"));
         return;
     }
-    QString dir = QFileDialog::getExistingDirectory(this, tr("Output path"),
-                                                    g_dir.currentPath(),
-                                                    QFileDialog::ShowDirsOnly
-                                                    | QFileDialog::DontResolveSymlinks);
-    if(!dir.isEmpty())
+    int itype =new_index.data(Qt::UserRole+NODE_TYPE).toInt();
+    if(itype!=DEVICE_NODE)
     {
-        bool ok;
-        QString text = QInputDialog::getText(this, tr("Output file name"),
-                                             tr("name:"), QLineEdit::Normal,
-                                             name, &ok);
-        if (ok && !text.isEmpty())
-        {
-
-        }
+        QMessageBox::warning(this,tr("warnning"),tr("Select one device item at first"));
+        return;
     }
+    QString xpath= new_index.data(Qt::UserRole).toString();
+    QString station =new_index.data(Qt::UserRole+STATION_NAME).toString();
+    QString dest =file_path+QDir::separator()+file_name+QDir::separator()+DEVICE_PATH+QDir::separator()+station;
+    DevInfo_struct info;
+    QString sID =mScdDelegat->getitemID(xpath);
+    mScdDelegat->getDevByIDfromStation(info,sID,station);
+    QString source =file_path+QDir::separator()+file_name+QDir::separator()+DEVICE_PATH
+            +QDir::separator()+station
+            +QDir::separator()+sID;
+    Zip_process m_dlg;
+    m_dlg.setmode(MODE_DEV);
+    m_dlg.setmethod(LIB_MANAGE);
+    m_dlg.settype(ZIP_ARCHIVE);
+    m_dlg.setdevice(info.name); //device name
+    m_dlg.setlibrary(info.type);
+    m_dlg.setversion(info.version);
+    m_dlg.setdatabse(info.database);
+    m_dlg.setsource(source);
+    m_dlg.setupwidget();
+    m_dlg.exec();
 }

@@ -102,7 +102,7 @@ void MainWindow::Add_ProjectWidget(QString name,QString path)
         action->setIcon(QIcon(""));
     }
 
-    action_window =new QAction(name);
+    action_window =new QAction(name,this);
     action_window->setProperty("name",path+QDir::separator()+name);
     connect(action_window,SIGNAL(triggered()),this,SLOT(on_action_switchWindow()));
     action_window->setIcon(QIcon(":/images/pencil_edit.png"));

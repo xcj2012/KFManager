@@ -50,6 +50,7 @@ public:
     bool                isExistSCD(QString station);
     bool                getitemInfo(Item_struct &item,QString xpath);
     bool                setitemInfo(Item_struct &item,QString xpath);
+    bool                isExistItem(QString xpath);
     QString                getcreatetime();
     QString                getmodifytime();
     void                   setmodifytime(QString);

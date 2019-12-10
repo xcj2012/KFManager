@@ -3,6 +3,7 @@ int  g_User_permissions=USER_CUSTOMER;
 QDir g_dir;
 QStringList g_logs;
 QString g_Template_path;
+QMap<QString,QMap<QString,QMap<QString,QString>>>g_lib_map;
 bool g_delete_Project(QString name,QString path)
 {
 
@@ -131,6 +132,38 @@ bool copyFileToPath(QString sourceDir ,QString toDir, bool coverFileIfExist)
     }
     return true;
 }
+void init_library_map()
+{
+    g_lib_map.clear();
+    QStringList m_devices =g_getfiles(g_Template_path,LIST_MODE_DIR_TOP);
+    foreach (QString var, m_devices)
+    {
+        QMap<QString,QMap<QString,QString>>map_dev;
+        QStringList versions =g_getfiles(var,LIST_MODE_DIR_TOP);
+        foreach (QString ver, versions)
+        {
+            QMap<QString,QString> map_ver;
+            QString filename =ver+QDir::separator()+"hash.xml";
+            pugi::xml_document m_doc;
+            if(m_doc.load_file(filename.toStdString().data()).status==pugi::status_ok)
+            {
+                QString xpath ="./SCL";
+                pugi::xpath_node xnode=m_doc.select_node(xpath.toStdString().data());
+                if(!xnode.node().empty())
+                {
+                    QString device =xnode.node().attribute("Device").as_string();
+                    QString version =xnode.node().attribute("version").as_string();
+                    QString database =xnode.node().attribute("Database").as_string();
+                    map_ver.insert(database,ver);
+                    map_dev.insert(version,map_ver);
+                    g_lib_map.insert(device,map_dev);
+                }
+            }
+        }
+    }
+    return;
+}
+
 bool copyDirectoryFiles(const QString &fromDir, const QString &toDir, bool coverFileIfExist)
 {
     QDir sourceDir(fromDir);

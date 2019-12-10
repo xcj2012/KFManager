@@ -254,10 +254,12 @@ void manage_project::on_pushbutton_Archive_clicked()
     path = m_model->item(index.row(),1)->text();
     name = m_model->item(index.row(),0)->text();
     Zip_process *m_dlg= new Zip_process(this);
-    m_dlg->setsource(path+QDir::separator()+name);
+    m_dlg->setsource(path);
+    m_dlg->setdevice(name);
     m_dlg->setmode(PRO_PRO);
     m_dlg->setmethod(PRO_MANAGE);
     m_dlg->settype(ZIP_ARCHIVE);
+    m_dlg->setupwidget();
     m_dlg->exec();
 }
 void manage_project::on_pushbutton_Retrieve_clicked()
@@ -267,5 +269,6 @@ void manage_project::on_pushbutton_Retrieve_clicked()
     m_dlg->setmode(PRO_PRO);
     m_dlg->setmethod(PRO_MANAGE);
     m_dlg->settype(ZIP_RETRIEVE);
+    m_dlg->setupwidget();
     m_dlg->exec();
 }
